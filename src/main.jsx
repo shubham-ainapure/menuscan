@@ -22,31 +22,31 @@ const router=createBrowserRouter([
   element:<Home/>,
   },
   {
-    path:'/dashboard',
+    path:'/menuscan/dashboard',
     element:<Dashboard/>
   },
   {
-    path:'/ManageMenu',
+    path:'/menuscan/ManageMenu',
     element:<ManageMenu/>
   },
   {
-    path:'/menu',
+    path:'/menuscan/menu',
     element:<RestaurantMenu/>
   },
   {
-    path:'/login',
+    path:'/menuscan/login',
     element:<Login/>
   },
   {
-    path:'/signup',
+    path:'/menuscan/signup',
     element:<SignUp/>
   },
   {
-    path:'/restaurant-form',
+    path:'/menuscan/restaurant-form',
     element:<RestaurantForm/>
   },
   {
-    path:'/restaurant',
+    path:'/menuscan/restaurant',
     element:<RestroSetting/>
   }
 
