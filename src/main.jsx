@@ -18,7 +18,7 @@ import RestaurantForm from './Components/Restaurant/RestaurantForm.jsx'
 
 const router=createBrowserRouter([
   {
-  path:'/',
+  path:'/menuscan/',
   element:<Home/>,
   },
   {
