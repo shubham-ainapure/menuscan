@@ -1,0 +1,228 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #202020;
+    margin: 0;
+    padding: 0;
+}
+
+.manage-menu-container {
+    height: 100vh;
+    padding: 20px;
+    min-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 28px;
+    color: #73c988;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add-category {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-category input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.add-category button {
+    width: 300px;
+    background-color: #314158;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-category button:hover {
+    background-color: #4b5e77;
+}
+
+.category-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.category-tab {
+    background-color: #314158;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-tab.active {
+    background-color: #4b5e77;
+}
+
+.category-management {
+    margin-top: 20px;
+}
+
+.category-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-actions input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+
+.category-actions button {
+    background-color: #314158;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.category-actions button:hover {
+    background-color: #4b5e77;
+}
+
+.add-dish h2 {
+    color: whitesmoke;
+    margin-bottom: 20px;
+}
+
+.add-dish input,
+.add-dish textarea,
+.add-dish select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.add-dish button {
+    background-color: #314158;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-dish button:hover {
+    background-color: #4b5e77;
+}
+
+.dish-scroll {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.dish-tab {
+    background-color: #73c988;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dish-tab.active {
+    color: #202020;
+}
+
+
+
+.dish-btn {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.img-file {
+    color: white;
+}
+
+.dish-form {
+    margin-top: 20px;
+    width: 250px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .manage-menu-container {
+        padding: 15px;
+        min-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .add-category,
+    .category-actions,
+    .add-dish input,
+    .add-dish textarea,
+    .add-dish select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .add-category button,
+    .category-actions button,
+    .add-dish button {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .category-scroll {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .category-tab {
+        padding: 8px 16px;
+    }
+
+    .dish-scroll {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dish-tab {
+        padding: 8px 16px;
+    }
+
+   
+    .img-file {
+        font-size: 14px;
+    }
+}

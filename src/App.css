@@ -1,0 +1,35 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* text-align: center; */
+}
+.restoCard{
+  border: 2px solid rgb(239, 79, 95);
+  height: 20vh;
+  width: 30vw;
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.cardItems{
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+  margin-left: 10px;
+}
+span{
+  font-size: large;
+  margin-left: 10px;
+  /* font-weight: 500; */
+}
+.categoryContainer{
+  display: flex;
+}
+
+
+
