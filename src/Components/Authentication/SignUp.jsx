@@ -31,7 +31,7 @@ const SignUp = () => {
                 if (userData) {
                     dispatch(login(userData));
                 }
-                navigate('/restaurant-form');
+                navigate('/menuscan/restaurant-form');
                 setLoading(false);
             }
         } catch (error) {

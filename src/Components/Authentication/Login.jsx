@@ -42,11 +42,11 @@ function Login() {
                     const dish=await dbService.getAllDish(res.documents[0].$id);
                     dispatch(dishInfo(dish.documents));
 
-                    navigate('/dashboard');
+                    navigate('/menuscan/dashboard');
                     
                 }
                     else{
-                        navigate('/restaurant-form');
+                        navigate('/menuscan/restaurant-form');
                     }                 
                 }
         }

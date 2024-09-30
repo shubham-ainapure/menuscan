@@ -36,7 +36,7 @@ const RestaurantForm = () => {
         const dish=await dbService.getAllDish(res.documents[0].$id);
         dispatch(dishInfo(dish.documents));
 
-        navigate('/dashboard');
+        navigate('/menuscan/dashboard');
       }
      
     }
@@ -49,7 +49,7 @@ const RestaurantForm = () => {
  }
  const handleLogout=()=>{
   authService.logout();
-  navigate('/')
+  navigate('/menuscan')
  }
   return (
     <div className="restaurant-form-container">

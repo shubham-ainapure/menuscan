@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     const handleLogout=()=>{
         authService.logout();
-        navigate('/')
+        navigate('/menuscan')
        }
     return (
         <div className="dashboard-container">
@@ -36,10 +36,10 @@ const Dashboard = () => {
                 </section>
                 
                 <section className="dashboard-actions">
-                    <button className="action-card" onClick={()=>navigate('/ManageMenu')}>Manage Menu</button>
+                    <button className="action-card" onClick={()=>navigate('/menuscan/ManageMenu')}>Manage Menu</button>
                     <button className="action-card">Generate QR Code</button>
-                    <button className="action-card" onClick={()=>navigate('/restaurant')}>Restaurant Settings</button>
-                    <button className="action-card" onClick={()=>navigate('/menu')}>View Menu</button>
+                    <button className="action-card" onClick={()=>navigate('/menuscan/restaurant')}>Restaurant Settings</button>
+                    <button className="action-card" onClick={()=>navigate('/menuscan/menu')}>View Menu</button>
                 </section>
                 <button onClick={handleLogout}>Log out</button>
               

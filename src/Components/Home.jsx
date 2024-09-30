@@ -11,8 +11,8 @@ const Home = () => {
             <header className="header">
                 <div className="logo">MenuScan</div>
                 <nav className="nav">
-                    <Link to='/login' className="login-button">Log in</Link>
-                    <Link to='/signup' className="signup-button">Sign up</Link>
+                    <Link to='/menuscan/login' className="login-button">Log in</Link>
+                    <Link to='/menuscan/signup' className="signup-button">Sign up</Link>
                 </nav>
             </header>
 
@@ -21,7 +21,7 @@ const Home = () => {
                 <h1>Create and Share Your Menu with Ease</h1>
                 <p>Manage your restaurant's menu and share it with customers using a simple QR code.</p>
                 <div className="cta-buttons">
-                    <Link to='/login' className="cta-button">Get Started</Link>
+                    <Link to='/menuscan/login' className="cta-button">Get Started</Link>
                     <a href="#learn-more" className="cta-button-secondary">Learn More</a>
                 </div>
             </section>
