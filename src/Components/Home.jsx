@@ -14,6 +14,7 @@ const Home = () => {
         let parsedLogin;
         try {
             parsedLogin = JSON.parse(login);
+            console.log(parsedLogin);
         } catch (e) {
             parsedLogin = null;
         }
