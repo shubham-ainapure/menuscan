@@ -3,14 +3,15 @@ import '../Styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 // import config from './Config/config';
 import authService from '../appwrite/auth';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
     const navigate=useNavigate();
 
-    // useEffect(() => {
-    //     const login = localStorage.getItem('cookieFallback');
-    //     console.log('Login:', typeof login); 
-    // }, [navigate]);
+    useEffect(() => {
+        const user= useSelector((state)=>state.auth.userdata);
+        console.log(user);
+    }, []);
 
 
     return (
