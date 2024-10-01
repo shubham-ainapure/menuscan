@@ -18,7 +18,7 @@ const Home = () => {
             parsedLogin = null;
         }
 
-        if (parsedLogin && parsedLogin.length > 0) {
+        if (typeof parsedLogin === 'object' && parsedLogin !== null) {
             navigate('/menuscan/dashboard');
         }
     }, [navigate]);
