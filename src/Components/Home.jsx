@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../Styles/Home.css';
 import { Link } from 'react-router-dom';
 // import config from './Config/config';
 import authService from '../appwrite/auth';
 
 const Home = () => {
+
+    useEffect(()=>{
+        const login=localStorage.getItem('cookieFallback');
+        console.log(login);
+    },[])
+    
     return (
         <div className="home-container">
             {/* Header Section */}
