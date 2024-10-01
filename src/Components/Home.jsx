@@ -7,14 +7,10 @@ import authService from '../appwrite/auth';
 const Home = () => {
     const navigate=useNavigate();
 
-    useEffect(() => {
-        const login = localStorage.getItem('cookieFallback');
-        console.log('Login:', typeof login); 
-
-        // if (typeof parsedLogin === 'object' && parsedLogin !== null) {
-        //     navigate('/menuscan/dashboard');
-        // }
-    }, [navigate]);
+    // useEffect(() => {
+    //     const login = localStorage.getItem('cookieFallback');
+    //     console.log('Login:', typeof login); 
+    // }, [navigate]);
 
 
     return (
