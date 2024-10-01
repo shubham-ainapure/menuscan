@@ -9,7 +9,7 @@ const Home = () => {
 
     useEffect(()=>{
         const login=localStorage.getItem('cookieFallback');
-        if(login!=null){
+        if(login!=[]){
             navigate('/menuscan/dashboard');
         }
     },[])
