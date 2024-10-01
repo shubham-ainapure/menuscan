@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import '../Styles/Home.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import config from './Config/config';
 import authService from '../appwrite/auth';
 
 const Home = () => {
+    const navigate=useNavigate();
 
     useEffect(()=>{
         const login=localStorage.getItem('cookieFallback');
-        console.log(login);
+        if(login!=null){
+            navigate('/menuscan/dashboard');
+        }
     },[])
-    
+
     return (
         <div className="home-container">
             {/* Header Section */}
