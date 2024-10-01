@@ -7,12 +7,22 @@ import authService from '../appwrite/auth';
 const Home = () => {
     const navigate=useNavigate();
 
-    useEffect(()=>{
-        const login=localStorage.getItem('cookieFallback');
-        if(login && login.length > 0){
+    useEffect(() => {
+        const login = localStorage.getItem('cookieFallback');
+        console.log('Login:', login); 
+
+        let parsedLogin;
+        try {
+            parsedLogin = JSON.parse(login);
+        } catch (e) {
+            parsedLogin = null;
+        }
+
+        if (parsedLogin && parsedLogin.length > 0) {
             navigate('/menuscan/dashboard');
         }
-    },[])
+    }, [navigate]);
+
 
     return (
         <div className="home-container">
