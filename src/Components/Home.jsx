@@ -9,19 +9,11 @@ const Home = () => {
 
     useEffect(() => {
         const login = localStorage.getItem('cookieFallback');
-        console.log('Login:', login); 
+        console.log('Login:', typeof login); 
 
-        let parsedLogin;
-        try {
-            parsedLogin = JSON.parse(login);
-            console.log(parsedLogin);
-        } catch (e) {
-            parsedLogin = null;
-        }
-
-        if (typeof parsedLogin === 'object' && parsedLogin !== null) {
-            navigate('/menuscan/dashboard');
-        }
+        // if (typeof parsedLogin === 'object' && parsedLogin !== null) {
+        //     navigate('/menuscan/dashboard');
+        // }
     }, [navigate]);
 
 
