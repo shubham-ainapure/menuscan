@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux';
 const Home = () => {
     const navigate=useNavigate();
 
-    useEffect(() => {
-        const user= useSelector((state)=>state.auth.userdata);
-        console.log(user);
-    }, []);
+    // useEffect(() => {
+    //     const user= useSelector((state)=>state.auth.userdata);
+    //     console.log(user);
+    // }, []);
 
 
     return (
