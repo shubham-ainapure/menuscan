@@ -18,7 +18,7 @@ const Dashboard = () => {
     const handleLogout= async ()=>{
         setLogload(true);
         const log=await authService.logout();
-        if(user){
+        if(log){
             setLogload(false);
             navigate('/menuscan')
         }
