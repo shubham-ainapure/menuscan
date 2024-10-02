@@ -14,15 +14,19 @@ const RestaurantMenu = () => {
     const location=useLocation();
     const queryParams=new URLSearchParams(location.search);
     const data=queryParams.get('data');
-    const restroData=JSON.parse(decodeURIComponent(data));
+
     const [categories,setCategories]=useState(null);
+    const [restroData,setRestroData]=useState(null);
     const [dish,setDish]=useState(null);
     const [selectedCategory,setSelectedCategory]=useState(null);
 
     useEffect(()=>{
         const fn=async ()=>{
-            console.log(categories);
-            const cat=await dbService.getCategoryList(restroData.$id);
+            const  res=await dbService.getRestaurantList(data);
+            console.log('inside menu',res);
+            setRestroData(res.documents[0]);
+
+            const cat=await dbService.getCategoryList(res.documents[0].$id);
             setCategories(cat.documents);
             fetchDishesForCategory(cat.documents[0].$id);
             console.log(categories);
