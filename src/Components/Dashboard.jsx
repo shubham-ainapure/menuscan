@@ -5,17 +5,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import authService from '../appwrite/auth';
 import dbService from '../appwrite/DbService';
 import { dishInfo } from '../Store/dbSlice';
+import { TailSpin } from 'react-loader-spinner';
 
 const Dashboard = () => {
     const restroData=useSelector((state)=>state.db.restaurant);
     const categories=useSelector((state) => state.db.category);
     const dish=useSelector((state)=>state.db.dishesh);
+    const [logload,setLogload]=useState(false);
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
-    const handleLogout=()=>{
-        authService.logout();
-        navigate('/menuscan')
+    const handleLogout= async ()=>{
+        setLogload(true);
+        const log=await authService.logout();
+        if(user){
+            setLogload(false);
+            navigate('/menuscan')
+        }
        }
     return (
         <div className="dashboard-container">
@@ -41,7 +47,7 @@ const Dashboard = () => {
                     <button className="action-card" onClick={()=>navigate('/menuscan/restaurant')}>Restaurant Settings</button>
                     <button className="action-card" onClick={()=>navigate('/menuscan/menu')}>View Menu</button>
                 </section>
-                <button onClick={handleLogout}>Log out</button>
+                <button onClick={handleLogout}>{logload ? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Log out' }</button>
               
             </div>
             

@@ -65,7 +65,7 @@ export class AuthService{
         try {
           localStorage.removeItem('persist:auth'); // Clear the auth slice
           localStorage.removeItem('persist:db');
-          await this.account.deleteSession('current');
+          return await this.account.deleteSession('current');
            
         } catch (error) {
           console.log(error)

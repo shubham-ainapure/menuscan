@@ -10,19 +10,11 @@ const Home = () => {
 
     useEffect(() => {
         const login = localStorage.getItem('cookieFallback');
-        if (login) {
-            let parsedLogin;
-            try {
-                parsedLogin = JSON.parse(login);
-                console.log(parsedLogin);
-                if (typeof parsedLogin === 'object' && parsedLogin !== null) {
-                    navigate('/menuscan/dashboard');
-                }
-            } catch (e) {
-                console.error('Error parsing login:', e);
-            }
+        console.log(login.length);
+        if (login.length>2) {
+            navigate('/menuscan/dashboard');
         }
-    }, [navigate]);
+    }, []);
 
 
     return (
