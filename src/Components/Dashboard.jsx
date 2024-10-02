@@ -11,6 +11,7 @@ const Dashboard = () => {
     const restroData=useSelector((state)=>state.db.restaurant);
     const categories=useSelector((state) => state.db.category);
     const dish=useSelector((state)=>state.db.dishesh);
+    const queryString=encodeURIComponent(JSON.stringify({restroData,categories}));
     const [logload,setLogload]=useState(false);
     const dispatch=useDispatch();
     const navigate=useNavigate();
@@ -45,7 +46,7 @@ const Dashboard = () => {
                     <button className="action-card" onClick={()=>navigate('/menuscan/ManageMenu')}>Manage Menu</button>
                     <button className="action-card">Generate QR Code</button>
                     <button className="action-card" onClick={()=>navigate('/menuscan/restaurant')}>Restaurant Settings</button>
-                    <button className="action-card" onClick={()=>navigate(`/menuscan/menu/restaurant/${restroData}/category/${categories}`)}>View Menu</button>
+                    <button className="action-card" onClick={()=>navigate(`/menuscan/menu/?data=${queryString}`)}>View Menu</button>
                 </section>
                 <button onClick={handleLogout}>{logload ? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Log out' }</button>
               

@@ -6,12 +6,15 @@ import dbSlice from '../../Store/dbSlice';
 import config from '../../Config/config';
 import veg from '/icons8-veg-30.png';
 import nonveg from '/icons8-non-veg-30.png';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const RestaurantMenu = () => {
     // const restroData=useSelector((state)=>state.db.restaurant);
     // const categories=useSelector((state) => state.db.category);
-    const {restroData,categories}=useParams();
+    const location=useLocation();
+    const queryParams=new URLSearchParams(location.search);
+    const data=queryParams.get('data');
+    const {restroData,categories}=JSON.parse(decodeURIComponent(data));
     const [dish,setDish]=useState(null);
     const [selectedCategory,setSelectedCategory]=useState(null);
 
