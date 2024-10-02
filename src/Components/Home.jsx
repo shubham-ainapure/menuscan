@@ -8,9 +8,20 @@ import { useSelector } from 'react-redux';
 const Home = () => {
     const navigate=useNavigate();
 
-    // useEffect(async () => {
-      
-    // }, []);
+    useEffect(() => {
+        const login = localStorage.getItem('cookieFallback');
+        if (login) {
+            let parsedLogin;
+            try {
+                parsedLogin = JSON.parse(login);
+                if (typeof parsedLogin === 'object' && parsedLogin !== null) {
+                    navigate('/menuscan/dashboard');
+                }
+            } catch (e) {
+                console.error('Error parsing login:', e);
+            }
+        }
+    }, [navigate]);
 
 
     return (
