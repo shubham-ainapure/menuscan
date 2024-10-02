@@ -10,7 +10,9 @@ const Home = () => {
 
     useEffect(async () => {
         const user=await authService.getUser();
-        console.log(user);
+        if(user!=null){
+            navigate('/menuscan/dashboard');
+        }
     }, []);
 
 
