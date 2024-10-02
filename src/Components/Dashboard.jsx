@@ -11,7 +11,8 @@ const Dashboard = () => {
     const restroData=useSelector((state)=>state.db.restaurant);
     const categories=useSelector((state) => state.db.category);
     const dish=useSelector((state)=>state.db.dishesh);
-    const queryString=encodeURIComponent(JSON.stringify({restroData,categories}));
+    const queryString=encodeURIComponent(JSON.stringify(restroData.documents[0]));
+
     const [logload,setLogload]=useState(false);
     const dispatch=useDispatch();
     const navigate=useNavigate();

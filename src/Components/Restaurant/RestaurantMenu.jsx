@@ -14,12 +14,20 @@ const RestaurantMenu = () => {
     const location=useLocation();
     const queryParams=new URLSearchParams(location.search);
     const data=queryParams.get('data');
-    const {restroData,categories}=JSON.parse(decodeURIComponent(data));
+    const restroData=JSON.parse(decodeURIComponent(data));
+    const [categories,setCategories]=useState(null);
     const [dish,setDish]=useState(null);
     const [selectedCategory,setSelectedCategory]=useState(null);
 
     useEffect(()=>{
-        fetchDishesForCategory(categories[0].$id);
+        const fn=async ()=>{
+            console.log(categories);
+            const cat=await dbService.getCategoryList(restroData.$id);
+            setCategories(cat.documents);
+            fetchDishesForCategory(cat.documents[0].$id);
+            console.log(categories);
+         }
+         fn();
     },[])
 
     const fetchDishesForCategory = async (categoryId) => {
@@ -32,39 +40,39 @@ const RestaurantMenu = () => {
     };
 
     return (
-        <div className="restaurant-menu">
-            <div className="restaurant-card">
-                <h2>{restroData.documents[0].name}</h2>
-                <p>{restroData.documents[0].contact}</p>
-                <p>{restroData.documents[0].address}</p>
-            </div>
-
-            <div className="categories">
-                {categories && categories.map((category) => (
-                    <div key={category.$id} className={`category ${selectedCategory && selectedCategory === category.$id ? 'active' : ''}`} onClick={()=>fetchDishesForCategory(category.$id)}>
-                        {category.name}
-                    </div>
-                ))}
-            </div>
-
-            <div className="food-items">
-                {dish && dish.map(item => (
-                    <div key={item.$id} className="food-card">
-                        <img src={item.imageId} alt={item.name} className="food-image" />
-                        <div className="food-details">
-                            <h3 className='dishName'>{item.name}</h3>
-                            <p className='decs'>{item.description}</p>
-                           <div className='dishInfo'>
-                           <p className='price'>{'\u20A8'} {item.price}</p>
-                           <img src={item.veg ? veg:nonveg}/>
-                           </div>
+        <>{categories ? ( <div className="restaurant-menu">
+         <div className="restaurant-card">
+             <h2>{restroData.name}</h2>
+             <p>{restroData.contact}</p>
+             <p>{restroData.address}</p>
+         </div>
+ 
+         <div className="categories">
+             {categories && categories.map((category) => (
+                 <div key={category.$id} className={`category ${selectedCategory && selectedCategory === category.$id ? 'active' : ''}`} onClick={()=>fetchDishesForCategory(category.$id)}>
+                     {category.name}
+                 </div>
+             ))}
+         </div>
+ 
+         <div className="food-items">
+             {dish && dish.map(item => (
+                 <div key={item.$id} className="food-card">
+                     <img src={item.imageId} alt={item.name} className="food-image" />
+                     <div className="food-details">
+                         <h3 className='dishName'>{item.name}</h3>
+                         <p className='decs'>{item.description}</p>
+                        <div className='dishInfo'>
+                        <p className='price'>{'\u20A8'} {item.price}</p>
+                        <img src={item.veg ? veg:nonveg}/>
                         </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-
+                     </div>
+                 </div>
+             ))}
+         </div>
+     </div>):(<h1>Loading menu...</h1>)}
+        </>
+     );
 };
 
 export default RestaurantMenu;
