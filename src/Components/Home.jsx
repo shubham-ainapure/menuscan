@@ -14,6 +14,7 @@ const Home = () => {
             let parsedLogin;
             try {
                 parsedLogin = JSON.parse(login);
+                console.log(parsedLogin);
                 if (typeof parsedLogin === 'object' && parsedLogin !== null) {
                     navigate('/menuscan/dashboard');
                 }
