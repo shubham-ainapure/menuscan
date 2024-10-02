@@ -8,12 +8,9 @@ import { useSelector } from 'react-redux';
 const Home = () => {
     const navigate=useNavigate();
 
-    useEffect(async () => {
-        const user=await authService.getUser();
-        if(user!=null){
-            navigate('/menuscan/dashboard');
-        }
-    }, []);
+    // useEffect(async () => {
+      
+    // }, []);
 
 
     return (
