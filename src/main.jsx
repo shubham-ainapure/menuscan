@@ -30,7 +30,7 @@ const router=createBrowserRouter([
     element:<ManageMenu/>
   },
   {
-    path:'/menuscan/menu',
+    path:'/menuscan/menu/restaurant/:restroData/category/:categories',
     element:<RestaurantMenu/>
   },
   {

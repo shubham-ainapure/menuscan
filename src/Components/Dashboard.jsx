@@ -45,7 +45,7 @@ const Dashboard = () => {
                     <button className="action-card" onClick={()=>navigate('/menuscan/ManageMenu')}>Manage Menu</button>
                     <button className="action-card">Generate QR Code</button>
                     <button className="action-card" onClick={()=>navigate('/menuscan/restaurant')}>Restaurant Settings</button>
-                    <button className="action-card" onClick={()=>navigate('/menuscan/menu')}>View Menu</button>
+                    <button className="action-card" onClick={()=>navigate(`/menuscan/menu/restaurant/${restroData}/category/${categories}`)}>View Menu</button>
                 </section>
                 <button onClick={handleLogout}>{logload ? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Log out' }</button>
               
