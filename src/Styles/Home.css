@@ -150,6 +150,8 @@ body {
 
 /* Features Section */
 .features {
+    display: flex;
+    flex-direction: column;
     padding: 20px 0;
     color: white;
 }
