@@ -37,7 +37,7 @@ function QRGenerator(){
              {qrCodeUrl ?
               <>
               <img src={qrCodeUrl} alt="QR Code" />
-              <div className="features">
+              <div className="qrFeatures">
               <div>
               {/* <label htmlFor="size">Size</label> */}
               <select id="size" className="selection" value={width} onChange={(e)=>setWidth(e.target.value)}>
