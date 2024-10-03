@@ -1,0 +1,25 @@
+.features{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.selection{
+    padding: 6px;
+    background-color: #314158;
+    color: #73c988;
+    border-radius: 4px;
+    font-size: 17px;
+}
+.downloadBtn{
+    text-decoration: none;
+    background-color: #314158;
+    color: #73c988;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px;
+}
+.msg{
+    font-size: 18px;
+    color: #73c988;
+}

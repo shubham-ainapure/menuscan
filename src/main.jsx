@@ -15,6 +15,7 @@ import ManageMenu from './Components/Restaurant/ManageMenu.jsx'
 import Login from './Components/Authentication/Login.jsx'
 import SignUp from './Components/Authentication/SignUp.jsx'
 import RestaurantForm from './Components/Restaurant/RestaurantForm.jsx'
+import QRGenerator from './Components/QRCode/QRGenerator.jsx'
 
 const router=createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router=createBrowserRouter([
   {
     path:'/menuscan/restaurant',
     element:<RestroSetting/>
+  },
+  {
+    path:'/menuscan/qrcode',
+    element:<QRGenerator/>
   }
 
 ])
