@@ -44,7 +44,7 @@ const Dashboard = () => {
                 
                 <section className="dashboard-actions">
                     <button className="action-card" onClick={()=>navigate('/menuscan/ManageMenu')}>Manage Menu</button>
-                    <button className="action-card">Generate QR Code</button>
+                    <button className="action-card" onClick={()=>navigate('/menuscan/qrcode')}>Generate QR Code</button>
                     <button className="action-card" onClick={()=>navigate('/menuscan/restaurant')}>Restaurant Settings</button>
                     <button className="action-card" onClick={()=>navigate(`/menuscan/menu/?data=${queryString}`)}>View Menu</button>
                 </section>
