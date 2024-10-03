@@ -9,7 +9,6 @@ import config from '../../Config/config';
 const ManageMenu = () => {
     const restroData = useSelector((state) => state.db.restaurant);
     const categoryData = useSelector((state) => state.db.category);
-    const dishes=useSelector((state)=>state.db.dishesh);
     const [dishIds,setDishIds]=useState(null);
     const [loading,setLoading]=useState({
         addcategory:false,
@@ -31,14 +30,14 @@ const ManageMenu = () => {
     const [imgload,setImgload]=useState(false);
 
     useEffect(() => {
-        const ids=dishes.map(item=>{return item.$id});
-        setDishIds(ids);
         console.log(categoryData);
     }, [categoryData]);
 
     //function to fetch dihes based on category
     const fetchDishesForCategory = async (categoryId) => {
         const dishRes = await dbService.getDishesh(categoryId);
+        const ids=dishRes.documents.map(item=> {return item.$id});
+        setDishIds(ids);
         console.log(dishRes);
         if (dishRes) {
             setDish(dishRes.documents)
