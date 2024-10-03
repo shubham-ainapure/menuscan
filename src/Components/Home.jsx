@@ -85,7 +85,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <button onClick={()=>authService.logout()}>Log out</button>
+
         </div>
         
     );

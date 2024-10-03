@@ -31,6 +31,8 @@ const ManageMenu = () => {
     const [imgload,setImgload]=useState(false);
 
     useEffect(() => {
+        const ids=dishes.map(item=>{return item.$id});
+        setDishIds(ids);
         console.log(categoryData);
     }, [categoryData]);
 
