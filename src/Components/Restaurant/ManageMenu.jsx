@@ -9,6 +9,16 @@ import config from '../../Config/config';
 const ManageMenu = () => {
     const restroData = useSelector((state) => state.db.restaurant);
     const categoryData = useSelector((state) => state.db.category);
+    const dishes=useSelector((state)=>state.db.dishesh);
+    const [dishIds,setDishIds]=useState(null);
+    const [loading,setLoading]=useState({
+        addcategory:false,
+        updateCategory:false,
+        deleteCategory:false,
+        addDish:false,
+        updateDish:false,
+        deleteDish:false
+    })
     const dispatch = useDispatch();
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -36,6 +46,7 @@ const ManageMenu = () => {
     // add new category and update the the category in redux store 
     const handleAddCategory = async () => {
         if (newCategory) {
+            setLoading({...loading,addcategory:true});
             const res = await dbService.createCategory(newCategory, restroData.documents[0].$id);
             if (res) {
                 const cat = await dbService.getCategoryList(restroData.documents[0].$id);
@@ -43,6 +54,7 @@ const ManageMenu = () => {
                     dispatch(categoryInfo(cat.documents));
                 }
             }
+            setLoading({...loading,addcategory:false});
             setNewCategory('');
         }
     };
@@ -63,7 +75,8 @@ const ManageMenu = () => {
     //update the category name and update the category in redux store as well
     const handleUpdateCategoryName = async () => {
         if (selectedCategory) {
-            const res = await dbService.updateCategory(selectedCategory.selectedCategory, updatedCategoryName);
+            setLoading({...loading,updateCategory:true});
+            const res = await dbService.updateCategory(selectedCategory.$id, updatedCategoryName);
             if (res) {
                 const cat = await dbService.getCategoryList(restroData.documents[0].$id);
                 if (cat) {
@@ -75,12 +88,14 @@ const ManageMenu = () => {
                 setCategories(updatedCategories);
                 setSelectedCategory({ ...selectedCategory, name: updatedCategoryName });
             }
+            setLoading({...loading,updateCategory:false});
         }
     };
 
     // add a new dish to a category and update dishInfo in redux store
     const handleAddDish = async () => {
         if ( newDish.imageId) {
+            setLoading({...loading,addDish:true});
             const res = await dbService.createMenu({
                 name: newDish.name,
                 description: newDish.description,
@@ -93,6 +108,7 @@ const ManageMenu = () => {
             if (res) {
 
                 await fetchDishesForCategory(selectedCategory.$id);
+                setLoading({...loading,addDish:false});
                 setNewDish({ name: '', price: '', description: '', veg: 'Veg', imageId: '' });
                 imageInputRef.current.value = null;
                     const dish= await dbService.getAllDish(restroData.documents[0].$id);
@@ -111,6 +127,7 @@ const ManageMenu = () => {
     const handleUpdateDish = async () => {
         console.log(selectedCategory)
         if (selectedDish && newDish.name && newDish.price && newDish.description && newDish.imageId) {
+            setLoading({...loading,updateDish:true});
             const res = await dbService.updateMenu(selectedDish.$id, {
                 name: newDish.name,
                 description: newDish.description,
@@ -129,11 +146,13 @@ const ManageMenu = () => {
                 
                
             }
+            setLoading({...loading,updateDish:false});
         }
     };
 
     // delete dish
     const handleDeleteDish = async (dishId) => {
+        setLoading({...loading,deleteDish:true});
         const res = await dbService.deleteDish(dishId);
         if (res) {
             await fetchDishesForCategory(selectedCategory.$id);
@@ -143,17 +162,26 @@ const ManageMenu = () => {
             const dish= await dbService.getAllDish(restroData.documents[0].$id);
             dispatch(dishInfo(dish.documents));
         }
+        setLoading({...loading,deleteDish:false});
     };
 
     // delete category
     const handleDeleteCategory = async () => {
         if (selectedCategory) {
+            setLoading({...loading,deleteCategory:true});
             const res = await dbService.deleteCategory(selectedCategory.$id);
             if (res) {
+                if(dishIds.length>0){
+                    await dbService.deleteMultipleDish(dishIds);
+                }
                 const cat = await dbService.getCategoryList(restroData.documents[0].$id);
                 if (cat) {
+                    setLoading({...loading,deleteCategory:false});
                     dispatch(categoryInfo(cat.documents));
                 }
+                const dish= await dbService.getAllDish(restroData.documents[0].$id);
+                dispatch(dishInfo(dish.documents));
+
                 setCategories(categories.filter((category) => category.$id !== selectedCategory.$id));
                 setSelectedCategory(null);
                 setSelectedDish(null);
@@ -188,7 +216,7 @@ const ManageMenu = () => {
                     placeholder="Enter Category Name"
                     required
                 />
-                <button onClick={handleAddCategory}>Add Category</button>
+                <button onClick={handleAddCategory}>{loading.addcategory? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>: 'Add Category'}</button>
             </div>
 
             <div className="category-scroll">
@@ -213,8 +241,8 @@ const ManageMenu = () => {
                             value={updatedCategoryName}
                             onChange={(e) => setUpdatedCategoryName(e.target.value)}
                         />
-                        <button onClick={handleUpdateCategoryName}>Update</button>
-                        <button onClick={handleDeleteCategory}>Delete</button>
+                        <button onClick={handleUpdateCategoryName}>{loading.updateCategory? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Update'}</button>
+                        <button onClick={handleDeleteCategory}>{loading.deleteCategory? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Delete'}</button>
                     </div>
 
                     <div className="add-dish">
@@ -265,11 +293,11 @@ const ManageMenu = () => {
                             <span></span>
                             {selectedDish ? (
                                 <div className='dish-btn'>
-                                    <button onClick={handleUpdateDish}>Update Dish</button>
-                                    <button onClick={() => handleDeleteDish(selectedDish.$id)}>Delete</button>
+                                    <button onClick={handleUpdateDish}>{loading.updateDish? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Update Dish'}</button>
+                                    <button onClick={() => handleDeleteDish(selectedDish.$id)}>{loading.deleteDish? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Delete'}</button>
                                 </div>
                             ) : (
-                                <button onClick={handleAddDish}>{imgload ? 'please wait..' : 'Add Dish'}</button>
+                                <button onClick={handleAddDish}>{imgload ? 'please wait..' : loading.addDish?<TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Add Dish'}</button>
                             )}
                         </div>
                     </div>

@@ -134,6 +134,20 @@ export class DbService{
             return false;
         }
     }
+    
+    async deleteMultipleDish(documentIds){
+        try {
+            for (const documentId of documentIds){
+               await this.database.deleteDocument(
+                config.databaseId,
+                config.disheshCollection,
+                documentId
+               )
+            }
+        } catch (error) {
+            console.log('deleteMultipleDish',error);
+        }
+    }
 
     async deleteDish(docId){
         try {

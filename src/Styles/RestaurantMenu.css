@@ -51,6 +51,7 @@
 /* Food Items Grid */
 .food-items {
     display: flex;
+    min-width: 60vw;
     flex-wrap: wrap;
     gap: 20px;
     max-height: 400px; /* Set a fixed height */
