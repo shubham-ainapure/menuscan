@@ -76,7 +76,7 @@ function Login() {
                 <Button type='submit' name='Log in' loading={loading}/>
             </form>
             <p className="signup-link">
-                Don't have an account? <Link to="/signup">Sign Up</Link>
+                Don't have an account? <Link to="/menuscan/signup">Sign Up</Link>
             </p>
         </div>
     );
