@@ -86,7 +86,6 @@ const RestaurantForm = () => {
         </div>
         {/* <button type="submit">Submit</button> */}
         <Button type='submit' name='submit' loading={loading}/>
-        <button onClick={handleLogout}>Log out</button>
       </form>
     </div>
   );

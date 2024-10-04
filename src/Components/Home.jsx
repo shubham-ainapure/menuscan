@@ -7,11 +7,17 @@ import { useSelector } from 'react-redux';
 
 const Home = () => {
     const navigate=useNavigate();
+    const restroData = useSelector((state) => state.db.restaurant);
 
     useEffect(() => {
         const login = localStorage.getItem('cookieFallback');
         if (login && login.length>2) {
-            navigate('/menuscan/dashboard');
+            if(restroData){
+                navigate('/menuscan/dashboard');
+            }else{
+                navigate('/menuscan/restaurant-form');
+            }
+            
         }
     }, []);
 
