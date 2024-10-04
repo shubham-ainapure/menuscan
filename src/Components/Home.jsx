@@ -10,7 +10,6 @@ const Home = () => {
 
     useEffect(() => {
         const login = localStorage.getItem('cookieFallback');
-        console.log(login.length);
         if (login && login.length>2) {
             navigate('/menuscan/dashboard');
         }
