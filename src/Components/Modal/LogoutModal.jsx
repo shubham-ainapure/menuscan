@@ -95,7 +95,6 @@ const LogoutModal = ({ showModal, setShowModal }) => {
 
                                 />
                                 {success?<span className='success'>{success}</span>:null}
-                            
                                  <Button type='submit' name='Convert Account' loading={load.modalConvert}/>
                                  </form>
                             </div>

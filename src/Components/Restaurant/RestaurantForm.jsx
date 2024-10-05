@@ -84,7 +84,7 @@ const RestaurantForm = () => {
             required
           />
         </div>
-        {/* <button type="submit">Submit</button> */}
+        {error && <span className="error-message">{error}</span>}
         <Button type='submit' name='submit' loading={loading}/>
       </form>
     </div>
