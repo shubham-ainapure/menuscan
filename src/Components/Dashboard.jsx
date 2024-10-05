@@ -6,6 +6,7 @@ import authService from '../appwrite/auth';
 import dbService from '../appwrite/DbService';
 import { dishInfo } from '../Store/dbSlice';
 import { TailSpin } from 'react-loader-spinner';
+import LogoutModal from './Modal/LogoutModal';
 
 const Dashboard = () => {
     const restroData=useSelector((state)=>state.db.restaurant);
