@@ -13,15 +13,21 @@ const Dashboard = () => {
     const dish=useSelector((state)=>state.db.dishesh);
     const queryString=restroData.documents[0].userId;
     const [logload,setLogload]=useState(false);
+    const [showModal, setShowModal] = useState(false);
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
     const handleLogout= async ()=>{
-        setLogload(true);
-        const log=await authService.logout();
-        if(log){
-            setLogload(false);
-            navigate('/menuscan')
+        const user=await authService.getUser();
+        if(!user.email){
+            setShowModal(true);
+        }else{
+            setLogload(true);
+            const log= await authService.logout();
+             if(log){
+                 setLogload(false);
+                 navigate('/menuscan');
+             }
         }
        }
     return (
@@ -49,6 +55,7 @@ const Dashboard = () => {
                     <button className="action-card" onClick={()=>navigate(`/menuscan/menu/?data=${queryString}`)}>View Menu</button>
                 </section>
                 <button onClick={handleLogout}>{logload ? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Log out' }</button>
+                <LogoutModal showModal={showModal} setShowModal={setShowModal} />
               
             </div>
             

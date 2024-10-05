@@ -3,10 +3,13 @@ import '../Styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 // import config from './Config/config';
 import authService from '../appwrite/auth';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { categoryInfo, dishInfo, restaurantinfo } from '../Store/dbSlice';
+import { login } from '../Store/authSlice';
 
 const Home = () => {
     const navigate=useNavigate();
+    const dispatch=useDispatch();
     const restroData = useSelector((state) => state.db.restaurant);
 
     useEffect(() => {
@@ -20,6 +23,41 @@ const Home = () => {
             
         }
     }, []);
+
+    const handleLogin=async ()=>{
+        try {
+            const result= await authService.guestLogin();
+        if(result){
+            const userData = await authService.getUser();
+                console.log('user', userData);
+                if (userData) 
+                {
+                    dispatch(login(userData));
+                   const  res=await dbService.getRestaurantList(userData.$id)
+                   console.log("res",res.documents);
+                   if (res.documents.length>0){
+
+                    dispatch(restaurantinfo(res));
+
+                    const cat=await dbService.getCategoryList(res.documents[0].$id)
+                    dispatch(categoryInfo(cat.documents));
+
+                    const dish=await dbService.getAllDish(res.documents[0].$id);
+                    dispatch(dishInfo(dish.documents));
+
+                    navigate('/menuscan/dashboard');
+                    
+                }
+                else{
+                        navigate('/menuscan/restaurant-form');
+                    }                 
+                }
+        }
+        
+        } catch (error) {
+            console.log();
+        }
+    }
 
 
     return (
@@ -39,7 +77,7 @@ const Home = () => {
                 <p>Manage your restaurant's menu and share it with customers using a simple QR code.</p>
                 <div className="cta-buttons">
                     <Link to='/menuscan/login' className="cta-button">Get Started</Link>
-                    <a href="#learn-more" className="cta-button-secondary">Learn More</a>
+                    <a onClick={handleLogin} className="cta-button-secondary">Guest Login</a>
                 </div>
             </section>
 

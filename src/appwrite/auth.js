@@ -37,6 +37,33 @@ export class AuthService{
         }
       }
 
+      async guestLogin(){
+        try {
+          const result=await this.account.createAnonymousSession();
+          return result;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      async updateName(name){
+        try {
+          const result=await this.account.updateName(name);
+          return result;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      
+      async convertGuest(email,password){
+        try {
+          const result= await this.account.updateEmail(email,password);
+          return result;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
       async getUser(){
         try {
           return await this.account.get();

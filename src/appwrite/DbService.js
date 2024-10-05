@@ -134,6 +134,18 @@ export class DbService{
             return false;
         }
     }
+
+    async deleteRestaurant(docId){
+        try {
+            return await this.database.deleteDocument(
+                config.databaseId,
+                config.restaurantCollection,
+                docId
+            )
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     async deleteMultipleDish(documentIds){
         try {
