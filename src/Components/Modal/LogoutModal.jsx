@@ -76,18 +76,23 @@ const LogoutModal = ({ showModal, setShowModal }) => {
                                     placeholder="name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
+                                    required
                                 />
                                 <input
                                     type="email"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    required
+
                                 />
                                 <input
                                     type="password"
                                     placeholder="Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    required
+
                                 />
                                 {success?<span className='success'>{success}</span>:null}
                             
