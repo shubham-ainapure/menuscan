@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 // import config from './Config/config';
@@ -6,12 +6,13 @@ import authService from '../appwrite/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoryInfo, dishInfo, restaurantinfo } from '../Store/dbSlice';
 import { login } from '../Store/authSlice';
+import { TailSpin } from 'react-loader-spinner';
 
 const Home = () => {
     const navigate=useNavigate();
     const dispatch=useDispatch();
     const restroData = useSelector((state) => state.db.restaurant);
-
+    const [guestLoad,setGuestLoad]=useState(false);
     useEffect(() => {
         const login = localStorage.getItem('cookieFallback');
         if (login && login.length>2) {
@@ -26,6 +27,7 @@ const Home = () => {
 
     const handleLogin=async ()=>{
         try {
+            setGuestLoad(true);
             const result= await authService.guestLogin();
         if(result){
             const userData = await authService.getUser();
@@ -35,10 +37,12 @@ const Home = () => {
                     dispatch(login(userData));
                     navigate('/menuscan/restaurant-form');
                 }
+            setGuestLoad(false);
         }
         
         } catch (error) {
-            console.log();
+            console.log(error);
+            setGuestLoad(false);
         }
     }
 
@@ -60,7 +64,7 @@ const Home = () => {
                 <p>Manage your restaurant's menu and share it with customers using a simple QR code.</p>
                 <div className="cta-buttons">
                     <Link to='/menuscan/login' className="cta-button">Get Started</Link>
-                    <a onClick={handleLogin} className="cta-button-secondary">Guest Login</a>
+                    <a onClick={handleLogin} className="cta-button-secondary">{guestLoad? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>:'Guest Login' }</a>
                 </div>
             </section>
 

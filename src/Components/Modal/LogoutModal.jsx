@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import dbService from '../../appwrite/DbService';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button';
 
 const LogoutModal = ({ showModal, setShowModal }) => {
     const navigate=useNavigate();
@@ -39,7 +40,8 @@ const LogoutModal = ({ showModal, setShowModal }) => {
         setShowModal(false);
     };
 
-    const handleConvert = async() => {
+    const handleConvert = async(e) => {
+        e.preventDefault();
         setLoad({...load,modalConvert:true});
         try {
             const res=await authService.updateName(name);
@@ -68,6 +70,7 @@ const LogoutModal = ({ showModal, setShowModal }) => {
                         </p>
                         {showConvertFields ? (
                             <div className="convert-fields">
+                                 <form onSubmit={handleConvert}>
                                  <input
                                     type="text"
                                     placeholder="name"
@@ -87,9 +90,9 @@ const LogoutModal = ({ showModal, setShowModal }) => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                                 {success?<span className='success'>{success}</span>:null}
-                                <button onClick={handleConvert}>
-                                {load.modalConvert? <TailSpin color="#73c988" height='20' width='20' wrapperClass='spinner'/>: 'Convert Account' }
-                                </button>
+                            
+                                 <Button type='submit' name='Convert Account' loading={load.modalConvert}/>
+                                 </form>
                             </div>
                         ) : (
                             <>
