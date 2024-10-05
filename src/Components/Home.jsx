@@ -33,24 +33,7 @@ const Home = () => {
                 if (userData) 
                 {
                     dispatch(login(userData));
-                   const  res=await dbService.getRestaurantList(userData.$id)
-                   console.log("res",res.documents);
-                   if (res.documents.length>0){
-
-                    dispatch(restaurantinfo(res));
-
-                    const cat=await dbService.getCategoryList(res.documents[0].$id)
-                    dispatch(categoryInfo(cat.documents));
-
-                    const dish=await dbService.getAllDish(res.documents[0].$id);
-                    dispatch(dishInfo(dish.documents));
-
-                    navigate('/menuscan/dashboard');
-                    
-                }
-                else{
-                        navigate('/menuscan/restaurant-form');
-                    }                 
+                    navigate('/menuscan/restaurant-form');
                 }
         }
         
