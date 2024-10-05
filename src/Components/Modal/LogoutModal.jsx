@@ -50,10 +50,10 @@ const LogoutModal = ({ showModal, setShowModal }) => {
             const response= await authService.convertGuest(email,password);
             setSuccess('Account converted Successfully!!');
             console.log(response);
-            setLoad({...load,modalLog:false});
+            setLoad({...load,modalConvert:false});
            }
         } catch (error) {
-            setLoad({...load,modalLog:false});
+            setLoad({...load,modalConvert:false});
             console.log(error);
         }    
     };
